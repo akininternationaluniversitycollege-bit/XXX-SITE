@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Entertainment Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-4.0.3') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .card-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-meta i {
+            color: #667eea;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .card-link:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="site-title">Daily Entertainment Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#movies" class="active">Movies</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#news">News</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Latest Updates - <span id="current-date"></span></h2>
+            <p>Your daily source for movies, music, and entertainment news</p>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section id="movies" class="content-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-film"></i> Latest Movies</h2>
+            <div class="content-grid" id="movies-container">
+                <!-- Add your movies here -->
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/4a5568/ffffff?text=Movie+Poster');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Movie Title 1</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>December 19, 2024</span>
+                        </div>
+                        <p class="card-description">Brief description of the movie. This is where you can add details about the plot, cast, or why it's worth watching.</p>
+                        <a href="#" class="card-link">Watch Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/2d3748/ffffff?text=Movie+Poster');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Movie Title 2</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>December 18, 2024</span>
+                        </div>
+                        <p class="card-description">Another exciting movie description. Keep it engaging and informative for your visitors.</p>
+                        <a href="#" class="card-link">Watch Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/1a202c/ffffff?text=Movie+Poster');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Movie Title 3</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>December 17, 2024</span>
+                        </div>
+                        <p class="card-description">Third movie in your collection. You can easily add more by copying this structure.</p>
+                        <a href="#" class="card-link">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="content-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-music"></i> New Music Releases</h2>
+            <div class="content-grid" id="music-container">
+                <!-- Add your music here -->
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/e53e3e/ffffff?text=Album+Art');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Album Title 1</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-music"></i>
+                            <span>December 19, 2024</span>
+                        </div>
+                        <p class="card-description">Latest album release from your favorite artist. Include genre, notable tracks, or reviews.</p>
+                        <a href="#" class="card-link">Listen Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/dd6b20/ffffff?text=Album+Art');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Album Title 2</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-music"></i>
+                            <span>December 18, 2024</span>
+                        </div>
+                        <p class="card-description">Second music release of the week. Keep your audience updated with fresh tracks.</p>
+                        <a href="#" class="card-link">Listen Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/38a169/ffffff?text=Album+Art');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Album Title 3</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-music"></i>
+                            <span>December 17, 2024</span>
+                        </div>
+                        <p class="card-description">Third album in your music collection. Easy to update daily with new releases.</p>
+                        <a href="#" class="card-link">Listen Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="content-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-newspaper"></i> Entertainment News</h2>
+            <div class="content-grid" id="news-container">
+                <!-- Add your news here -->
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/805ad5/ffffff?text=News+Image');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Breaking News 1</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-newspaper"></i>
+                            <span>December 19, 2024</span>
+                        </div>
+                        <p class="card-description">Latest entertainment news update. Keep your audience informed about industry developments.</p>
+                        <a href="#" class="card-link">Read More</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/d53f8c/ffffff?text=News+Image');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Breaking News 2</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-newspaper"></i>
+                            <span>December 18, 2024</span>
+                        </div>
+                        <p class="card-description">Second news story of the day. Cover important events in movies, music, or celebrity news.</p>
+                        <a href="#" class="card-link">Read More</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-image" style="background-image: url('https://via.placeholder.com/300x200/3182ce/ffffff?text=News+Image');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Breaking News 3</h3>
+                        <div class="card-meta">
+                            <i class="fas fa-newspaper"></i>
+                            <span>December 17, 2024</span>
+                        </div>
+                        <p class="card-description">Third news update to keep your site fresh and current with daily information.</p>
+                        <a href="#" class="card-link">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Daily Entertainment Hub. Updated daily with fresh content.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Display current date
+        function getCurrentDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return now.toLocaleDateString('en-US', options);
+        }
+        
+        document.getElementById('current-date').textContent = getCurrentDate();
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.main-nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // How to add new content daily:
+        // 1. For Movies: Copy the entire content-card div inside movies-container
+        // 2. For Music: Copy the entire content-card div inside music-container  
+        // 3. For News: Copy the entire content-card div inside news-container
+        // 4. Update the title, date, description, image URL, and link
+        // 5. Commit and push to GitHub to update your live site
+    </script>
+</body>
+</html>
